@@ -1,0 +1,19 @@
+server {
+	listen 80;
+	listen [::]:80;
+
+	root /var/www/mrm/html;
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name mrm;
+
+	location / {
+		auth_basic "Área restringida";
+		auth_basic_user_file /etc/nginx/.htpasswd;
+
+		allow 80.28.211.131;
+		deny all;
+
+		try_files $uri $uri/ =404;
+	}
+}
